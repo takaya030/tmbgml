@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4be8fced66fbffeff2568a82e343bfc0",
+    "content-hash": "20d322ebc7f1637172b1027b3202ac3f",
     "packages": [
         {
             "name": "brick/math",
@@ -1584,6 +1584,73 @@
                 "lumen"
             ],
             "time": "2020-04-28T15:58:41+00:00"
+        },
+        {
+            "name": "lusitanian/oauth",
+            "version": "v0.8.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lusitanian/PHPoAuthLib.git",
+                "reference": "fc11a53db4b66da555a6a11fce294f574a8374f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/fc11a53db4b66da555a6a11fce294f574a8374f9",
+                "reference": "fc11a53db4b66da555a6a11fce294f574a8374f9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "predis/predis": "0.8.*@dev",
+                "squizlabs/php_codesniffer": "2.*",
+                "symfony/http-foundation": "~2.1"
+            },
+            "suggest": {
+                "ext-openssl": "Allows for usage of secure connections with the stream-based HTTP client.",
+                "predis/predis": "Allows using the Redis storage backend.",
+                "symfony/http-foundation": "Allows using the Symfony Session storage backend."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "OAuth": "src",
+                    "OAuth\\Unit": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Desberg",
+                    "email": "david@daviddesberg.com"
+                },
+                {
+                    "name": "Elliot Chance",
+                    "email": "elliotchance@gmail.com"
+                },
+                {
+                    "name": "Pieter Hordijk",
+                    "email": "info@pieterhordijk.com"
+                }
+            ],
+            "description": "PHP 5.3+ oAuth 1/2 Library",
+            "keywords": [
+                "Authentication",
+                "authorization",
+                "oauth",
+                "security"
+            ],
+            "time": "2018-02-14T22:37:14+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3589,6 +3656,62 @@
             "time": "2020-04-12T16:45:47+00:00"
         },
         {
+            "name": "takaya030/oauth-lumen",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/takaya030/oauth-lumen.git",
+                "reference": "94520bca0b2eb7e8bc16e5a8a30874972369974b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/takaya030/oauth-lumen/zipball/94520bca0b2eb7e8bc16e5a8a30874972369974b",
+                "reference": "94520bca0b2eb7e8bc16e5a8a30874972369974b",
+                "shasum": ""
+            },
+            "require": {
+                "lusitanian/oauth": "*",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "illuminate/support": "~5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Takaya030\\OAuth": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Artdarek",
+                    "email": "artdarek@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "takaya030",
+                    "email": "takaya030@yahoo.co.jp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "OAuth Service Provider for Lumen 6",
+            "homepage": "https://github.com/takaya030/oauth-lumen",
+            "keywords": [
+                "Lusitanian",
+                "OAuth",
+                "lumen",
+                "php"
+            ],
+            "support": {
+                "source": "https://github.com/takaya030/oauth-lumen/tree/master",
+                "issues": "https://github.com/takaya030/oauth-lumen/issues"
+            },
+            "time": "2020-03-28T09:06:06+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v4.1.5",
             "source": {
@@ -5362,7 +5485,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "takaya030/oauth-lumen": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

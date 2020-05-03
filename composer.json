@@ -4,9 +4,16 @@
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/takaya030/oauth-lumen"
+        }
+    ],
     "require": {
         "php": "^7.2.5",
-        "laravel/lumen-framework": "^7.0"
+        "laravel/lumen-framework": "^7.0",
+        "takaya030/oauth-lumen": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
@@ -37,6 +44,7 @@
     "scripts": {
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ]
+        ],
+        "start": "php -S localhost:8000 -t public"
     }
 }
