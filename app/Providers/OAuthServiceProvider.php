@@ -40,7 +40,7 @@ class OAuthServiceProvider extends ServiceProvider {
             $oauth = new OAuth();
 
 			// register custom service
-//			$oauth->registerService('MyGoogle', \App\OAuth\Service\MyGoogle::class);
+			$oauth->registerService('MyGoogle', \App\OAuth\Service\MyGoogle::class);
 
             // return oAuth instance
             return $oauth;
