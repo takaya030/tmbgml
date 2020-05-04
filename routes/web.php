@@ -14,3 +14,6 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+// send Tumblr my posts to Gmail
+$router->get('/tumblr',  'TumblrController@getPosts' );
