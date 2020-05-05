@@ -102,7 +102,7 @@ abstract class PostBase
 
 	private function getTagsStr()
 	{
-		return '<div>tags: ' . implode( ',', $this->tags ) . '</div><br />';
+		return ( count( $this->tags ) > 0 )?  '<div>tags: ' . implode( ',', $this->tags ) . '</div><br />' : "";
 	}
 
 
