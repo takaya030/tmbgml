@@ -106,6 +106,7 @@ abstract class PostBase
 	}
 
 
+	// custom parser for derived class
 	abstract protected function parse();
 	abstract protected function getPostBody();
 }
