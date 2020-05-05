@@ -22,5 +22,18 @@ class PostText extends PostBase
 
 	protected function getPostBody()
 	{
+		$body = "";
+
+		if( !empty($this->data->title) )
+		{
+			$body .= '<div>' . $this->data->title . '</div><br />';
+		}
+
+		if( !empty($this->data->body) )
+		{
+			$body .= '<div>' . $this->data->body . '</div><br />';
+		}
+
+		return $body;
 	}
 }
