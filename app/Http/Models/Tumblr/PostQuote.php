@@ -18,6 +18,7 @@ class PostQuote extends PostBase
 
 	protected function parse()
 	{
+		$this->subject = $this->makeSubject( $this->data->type, $this->data->summary );
 	}
 
 	protected function getPostBody()

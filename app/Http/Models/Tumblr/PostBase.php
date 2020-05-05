@@ -26,16 +26,6 @@ abstract class PostBase
 
 	private function parse_common()
 	{
-		$subject = isset( $this->data->summary ) ?  $this->data->summary : 'No title';
-		if( empty($subject) )
-			$subject = 'No title';
-
-		$subject = (mb_strlen($subject,'utf-8') > 32)? 
-			mb_substr($subject, 0, 32) . '...' :
-			$subject;
-
-		$this->subject = $this->makeSubject( $this->data->type, $subject );
-
 		$this->timestamp = Carbon::createFromTimestamp($this->data->timestamp, 'Asia/Tokyo')->toRfc2822String();
 
 		if( !empty($this->data->tags) )
@@ -47,8 +37,17 @@ abstract class PostBase
 		}
 	}
 
-	private function makeSubject( string $ptype, string $subject )
+	protected function makeSubject( string $ptype, string $summary )
 	{
+		$subject = isset( $summary ) ?  $summary : 'No title';
+		if( empty($subject) )
+			$subject = 'No title';
+
+		$subject = (mb_strlen($subject,'utf-8') > 32)? 
+			mb_substr($subject, 0, 32) . '...' :
+			$subject;
+
+
 		$rtype_str = 'Unknown';
 
 		if( $ptype === 'quote' )
