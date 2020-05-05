@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use \Illuminate\Http\Request;
+use \App\Http\Models\Tumblr\PostText;
 
 class TumblrController extends Controller
 {
@@ -23,6 +24,9 @@ class TumblrController extends Controller
 		$response_body = (string)$response->getBody();
 		$result = json_decode( $response_body );
 
-		dd($result);
+		$post_text = new PostText( $result->response->posts[0] );
+		dd($post_text);
+
+		//dd($result);
 	}
 }
