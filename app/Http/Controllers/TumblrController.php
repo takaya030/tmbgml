@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use \Illuminate\Http\Request;
-use \App\Http\Models\Tumblr\PostText;
+use \App\Http\Models\Tumblr\PostFactory;
 
 class TumblrController extends Controller
 {
@@ -24,8 +24,15 @@ class TumblrController extends Controller
 		$response_body = (string)$response->getBody();
 		$result = json_decode( $response_body );
 
-		$post_text = new PostText( $result->response->posts[0] );
-		dd($post_text);
+		$post_obj = PostFactory::create( $result->response->posts[0] );
+		if( is_null($post_obj) )
+		{
+			dd("Unknown type.");
+		}
+		else
+		{
+			dd($post_obj->getPostData());
+		}
 
 		//dd($result);
 	}
