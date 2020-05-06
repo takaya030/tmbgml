@@ -25,6 +25,7 @@ class Gmail extends OAuthClient
 		return (isset($result['labels']))? $result['labels'] : [];
 	}
 
+	/*
 	public function getMessages()
 	{
 		$params = [
@@ -39,6 +40,7 @@ class Gmail extends OAuthClient
 
 		return $result;
 	}
+	 */
 
 	public function insertMail( TumblrPostItem $item )
 	{
