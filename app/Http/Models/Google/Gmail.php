@@ -25,23 +25,6 @@ class Gmail extends OAuthClient
 		return (isset($result['labels']))? $result['labels'] : [];
 	}
 
-	/*
-	public function getMessages()
-	{
-		$params = [
-			'maxResults' => '3',
-			'q' => 'is:inbox',
-		];
-
-		$googleService = $this->getOauthService();
-
-		// Send a request with it
-		$result = json_decode($googleService->request('https://www.googleapis.com/gmail/v1/users/me/messages?'.http_build_query($params),'GET'), true);
-
-		return $result;
-	}
-	 */
-
 	public function insertMail( TumblrPostItem $item )
 	{
 		$raw = static::base64url_encode( $item->getPostData() );
