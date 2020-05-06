@@ -21,6 +21,11 @@ class PostLink extends PostBase
 		$this->subject = $this->makeSubject( $this->data->type, $this->data->title );
 	}
 
+	protected function getTypeStr()
+	{
+		return 'Link';
+	}
+
 	protected function getPostBody()
 	{
 		$body = "";

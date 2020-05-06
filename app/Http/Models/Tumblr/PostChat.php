@@ -21,6 +21,11 @@ class PostChat extends PostBase
 		$this->subject = $this->makeSubject( $this->data->type, $this->data->summary );
 	}
 
+	protected function getTypeStr()
+	{
+		return 'Chat';
+	}
+
 	protected function getPostBody()
 	{
 		$body = "";

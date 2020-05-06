@@ -21,6 +21,11 @@ class PostText extends PostBase
 		$this->subject = $this->makeSubject( $this->data->type, $this->data->summary );
 	}
 
+	protected function getTypeStr()
+	{
+		return 'Text';
+	}
+
 	protected function getPostBody()
 	{
 		$body = "";

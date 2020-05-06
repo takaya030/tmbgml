@@ -47,25 +47,7 @@ abstract class PostBase
 			mb_substr($subject, 0, 32) . '...' :
 			$subject;
 
-
-		$rtype_str = 'Unknown';
-
-		if( $ptype === 'quote' )
-		{
-			$type_str = 'Quote';
-		}
-		elseif( $ptype === 'text' )
-		{
-			$type_str = 'Text';
-		}
-		elseif( $ptype === 'link' )
-		{
-			$type_str = 'Link';
-		}
-		elseif( $ptype === 'chat' )
-		{
-			$type_str = 'Chat';
-		}
+		$type_str = $this->getTypeStr();
 
 		return '[' . $type_str . ']' . $subject;
 	}
@@ -107,5 +89,6 @@ abstract class PostBase
 
 	// custom parser for derived class
 	abstract protected function parse();
+	abstract protected function getTypeStr();
 	abstract protected function getPostBody();
 }
