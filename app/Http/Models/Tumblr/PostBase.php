@@ -49,7 +49,7 @@ abstract class PostBase
 
 		$type_str = $this->getTypeStr();
 
-		return '[' . $type_str . ']' . $subject;
+		return '[' . $type_str . '] ' . $subject;
 	}
 
 
