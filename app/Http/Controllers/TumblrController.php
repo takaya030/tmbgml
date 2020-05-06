@@ -17,60 +17,84 @@ class TumblrController extends Controller
 	{
 		$real_offset = -1;
 		$real_limit = -1;
+		$prev_offset = 0;
+		$start_offset = 0;
 
 		$datastore = new Datastore();
 		$entity = $datastore->lookup( env('DATASTORE_KIND'), env('TUMBLR_USER_ID') );
 		if( $entity instanceof Entity )
 		{
 			// 前回終了時の offset
-			$prev_offset = (int)$entity->get('start_offset');
+			$start_offset = $prev_offset = (int)$entity->get('start_offset');
 
-			list( $real_offset, $real_limit ) = $this->getOffetAndLimit( $prev_offset );
-
-			dd([$real_offset, $real_limit]);
-
-			/*
-			// 前回最後の次から
-			if( $offset == 0 )
-				$last_time_favorited++;
-			else
-			{
-				// time_favorited でソートするため、同時刻にポストされた複数のアイテムはすべて読み込む
-				$skip_offset = $offset + 1;
-				$num_read_items += $offset;			// 読み込む個数をスキップする分増やす
-			}
-			 */
+			// 今回の offset, limit
+			list( $real_offset, $real_limit ) = $this->getOffetAndLimit( $start_offset );
 		}
 
-		dd($start_offset);
+		// ポストが増えていなければ終了
+		if( $real_limit <= 0 )
+		{
+			return response()->json([
+				'msg' => "New posts are nothing.",
+				'offset' => $real_offset,
+				'limit' => $real_limit,
+			]);
+		}
 
 
-
+		// 新規ポストの取得
 		$client = new \GuzzleHttp\Client([
 			'base_uri' => $this->base_uri,
 		]);
 
-		$num_mails = env('TUMBLR_MAX_POSTS');		// Gmail にインサートするアイテム数
-
 		$response = $client->request('GET', '/v2/blog/'.env('TUMBLR_USER_ID').'.tumblr.com/posts', [ 'query' => [
 			'api_key'		=> env('TUMBLR_API_KEY'),
-			'limit'			=> $num_mails,
+			'offset'		=> $real_offset,
+			'limit'			=> $real_limit,
 		]]);
 
 		$response_body = (string)$response->getBody();
 		$result = json_decode( $response_body );
 
-		$post_obj = PostFactory::create( $result->response->posts[0] );
-		if( is_null($post_obj) )
+		if( $result->meta->status != 200 || $result->meta->msg !== "OK" )
 		{
-			dd("Unknown type.");
+			return response()->json([
+				'msg' => "Fail to retrieve posts.",
+				'offset' => $real_offset,
+				'limit' => $real_limit,
+			]);
 		}
 
-		$gmail = new Gmail();
-		$gmail->insertMail( $post_obj );
 
-		dd($post_obj->getPostData());
-		//dd($result);
+		// insert mails
+		if( is_array( $result->response->posts ) )
+		{
+			$gmail = new Gmail();
+			foreach( $result->response->posts as $post_item )
+			{
+				$post_obj = PostFactory::create( $post_item );
+				if( !is_null($post_obj) )
+				{
+					if( $gmail->insertMail( $post_obj ) == false )
+						break;
+				}
+				$start_offset++;
+			}
+		}
+
+
+		// 次回の start_offset を保存
+		if( $prev_offset < $start_offset )
+		{
+			$datastore->upsert( env('DATASTORE_KIND'), env('TUMBLR_USER_ID'), ['start_offset' => $start_offset] );
+		}
+
+
+		return response()->json([
+			'msg' => "Success to insert mails.",
+			'offset' => $real_offset,
+			'limit' => $real_limit,
+		]);
 	}
 
 
