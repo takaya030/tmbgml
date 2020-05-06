@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use \Illuminate\Http\Request;
 use \App\Http\Models\Tumblr\PostFactory;
+use \App\Http\Models\Google\Gmail;
 
 class TumblrController extends Controller
 {
@@ -29,11 +30,11 @@ class TumblrController extends Controller
 		{
 			dd("Unknown type.");
 		}
-		else
-		{
-			dd($post_obj->getPostData());
-		}
 
+		$gmail = new Gmail();
+		$gmail->insertMail( $post_obj );
+
+		dd($post_obj->getPostData());
 		//dd($result);
 	}
 }
