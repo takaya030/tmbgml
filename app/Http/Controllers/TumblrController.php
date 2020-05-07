@@ -69,8 +69,9 @@ class TumblrController extends Controller
 		// insert mails
 		if( is_array( $result->response->posts ) )
 		{
+			$posts = array_reverse( $result->response->posts );
 			$gmail = new Gmail();
-			foreach( $result->response->posts as $post_item )
+			foreach( $posts as $post_item )
 			{
 				$post_obj = PostFactory::create( $post_item );
 				if( !is_null($post_obj) )
