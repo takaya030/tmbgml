@@ -1,0 +1,18 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "php72@latest": {
+      "last_modified": "2020-08-06T18:10:26Z",
+      "plugin_version": "0.0.3",
+      "resolved": "github:NixOS/nixpkgs/a4e77ce9cff170dbb2e49be7c9442a76bf49950e#php72",
+      "source": "devbox-search",
+      "version": "7.2.32"
+    },
+    "php72packages.composer@latest": {
+      "last_modified": "2020-08-06T18:10:26Z",
+      "resolved": "github:NixOS/nixpkgs/a4e77ce9cff170dbb2e49be7c9442a76bf49950e#php72Packages.composer",
+      "source": "devbox-search",
+      "version": "1.10.8"
+    }
+  }
+}
