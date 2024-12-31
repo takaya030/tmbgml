@@ -1,18 +1,18 @@
 {
   "lockfile_version": "1",
   "packages": {
-    "php72@latest": {
-      "last_modified": "2020-08-06T18:10:26Z",
+    "php73@latest": {
+      "last_modified": "2021-06-02T10:24:24Z",
       "plugin_version": "0.0.3",
-      "resolved": "github:NixOS/nixpkgs/a4e77ce9cff170dbb2e49be7c9442a76bf49950e#php72",
+      "resolved": "github:NixOS/nixpkgs/239da47116274ee326a965d80b3ed1d3bf08af62#php73",
       "source": "devbox-search",
-      "version": "7.2.32"
+      "version": "7.3.28"
     },
-    "php72packages.composer@latest": {
-      "last_modified": "2020-08-06T18:10:26Z",
-      "resolved": "github:NixOS/nixpkgs/a4e77ce9cff170dbb2e49be7c9442a76bf49950e#php72Packages.composer",
+    "php73packages.composer@latest": {
+      "last_modified": "2021-06-04T12:47:07Z",
+      "resolved": "github:NixOS/nixpkgs/f36a65f6e2e9f3641f12c7d6e48a5ec4b5c5394b#php73Packages.composer",
       "source": "devbox-search",
-      "version": "1.10.8"
+      "version": "2.1.1"
     }
   }
 }

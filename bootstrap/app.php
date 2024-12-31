@@ -105,6 +105,7 @@ $app->middleware([
 // $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(App\Providers\OAuthServiceProvider::class);
+$app->register(Laravel\Sail\SailServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
